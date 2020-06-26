@@ -9,3 +9,5 @@ Generate a "PDF link" on each page by including the plugin in TypoScript or just
 
 
 Uses CSS to render PDF Output. CSS with media key "all" is included automatically. You can choose if you want to include "screen" or "print" CSS.
+
+Forked to support TYPO3 10 LTS
