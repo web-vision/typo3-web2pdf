@@ -40,7 +40,7 @@ class ModuleOptions implements \TYPO3\CMS\Core\SingletonInterface {
 
     /**
      * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManager
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $configurationManager;
 

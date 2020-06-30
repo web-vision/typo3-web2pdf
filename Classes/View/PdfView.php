@@ -46,19 +46,19 @@ class PdfView
     const STR_REPLACEMENT_KEY = 'strReplacements';
     /**
      * @var \Mittwald\Web2pdf\Options\ModuleOptions
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $options;
 
     /**
      * @var \Mittwald\Web2pdf\Utility\FilenameUtility
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $fileNameUtility;
 
     /**
      * @var \Mittwald\Web2pdf\Utility\PdfLinkUtility
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $pdfLinkUtility;
 
