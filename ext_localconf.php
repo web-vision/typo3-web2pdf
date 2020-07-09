@@ -27,7 +27,7 @@
 if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
-
+$_EXTKEY = 'web2pdf';
 TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Mittwald.' . $_EXTKEY,
         'Pi1',
@@ -44,6 +44,3 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration']['web2pdf'] =
             'EXT:web2pdf/Classes/Service/RealurlService.php:Mittwald\\Web2pdf\\Service\\RealurlService->addAutoConfig';
 }
-
-// Add hook for PDF generation
-$TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][] = 'Mittwald\Web2pdf\Service\PdfRenderService->onFrontendOutput';

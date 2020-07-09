@@ -171,7 +171,7 @@ class PdfView
                 'margin_top' => $topMargin,
                 'margin_bottom' => $bottomMargin,
                 'orientation' => $pageOrientation,
-                'tempDir' => PATH_site . 'typo3temp',
+                'tempDir' => \TYPO3\CMS\Core\Core\Environment::getPublicPath() . 'typo3temp',
                 'fontDir' => ExtensionManagementUtility::extPath('web2pdf') . 'Resources/Public/Fonts',
             ]
         );
