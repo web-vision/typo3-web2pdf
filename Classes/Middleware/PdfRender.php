@@ -29,12 +29,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 
 /**
  * Middleware provides generation of full html page as PDF
@@ -53,12 +49,12 @@ class PdfRender implements MiddlewareInterface
      */
     protected $view;
 
-
     /**
      * Instantiates necessary objects
      *
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
         $this->view = $this->objectManager->get('Mittwald\\Web2pdf\View\\PdfView');
     }
@@ -68,8 +64,11 @@ class PdfRender implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        //TODO set condition to distinguidh pdf rendering request also need to pass the page title as second parameter in renderHtmlOutput()
-        $this->view->renderHtmlOutput($GLOBALS['TSFE']->content,'');
+        $arguments = $request->getQueryParams();
+        if (isset($arguments['tx_web2pdf_pi1']) && $arguments['tx_web2pdf_pi1']['argument'] == 'printPage') {
+            $response = $handler->handle($request);
+            $this->view->renderHtmlOutput($GLOBALS['TSFE']->pageRenderer->getBodyContent(),$GLOBALS['TSFE']->page['title']);
+        }
         return $handler->handle($request);
     }
 

@@ -5,7 +5,7 @@ return [
         'web2pdf/PdfRender' => [
             'target' => \Mittwald\Web2pdf\Middleware\PdfRender::class,
             'after' => [
-                'typo3/cms-frontend/prepare-tsfe-rendering',
+                'typo3/cms-frontend/output-compression',
             ]
         ],
     ],
